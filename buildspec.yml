@@ -11,7 +11,7 @@ phases:
         commands:
             - python --version
             - pylint $CODEBUILD_SRC_DIR/*.py --errors-only
-            - pylint $CODEBUILD_SRC_DIR/adwebsite_project/*.py --errors-only
+            - pylint $CODEBUILD_SRC_DIR/donation_project/*.py --errors-only
 artifacts:
     files:
         - '**/*'

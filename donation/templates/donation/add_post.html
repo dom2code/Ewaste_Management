@@ -1,0 +1,28 @@
+{% extends 'donation/base.html' %}
+
+{% block title %}
+	Create new post
+{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1 style="color:rgb(0, 255, 13)">Tell us about your electronics item</h1>
+<br/><br/>
+<div style="color:rgb(0, 255, 13)" class ="form-group">
+<form method="POST" enctype="multipart/form-data"> 
+	{% csrf_token %}
+	{{ form.media }}
+	{{ form.as_p }}
+	<button class="btn btn-success">Post</button>
+</div>
+<script>
+	var name = "{{ user.id }}";
+	document.getElementById("elder").value = name;
+</script>
+
+{% else %}
+
+No access for this function!!
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'donation/main.css' %}">
+
+    {% if title %}
+        <title>Recycle E-waste -{{ title }} </title>
+    {% else %}
+        <title>Recycle E-waste</title>
+    {% endif %}
+</head>
+<body style="background-image:url(https://wallpaperaccess.com/full/496120.jpg)">
+ <header>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-transparent">
+		<a class="navbar-brand" href="{% url 'home' %}"><img style="height: 50px; position: fixed; left:0px; top: 0;" src="https://sdr.co.uk/wp-content/uploads/2016/07/electronic-recycling-273x300.jpg"></a>
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'home' %}" style="color: greenyellow;">Home</a>
+              <a class="nav-item nav-link" href="{% url 'about' %}" style="color: greenyellow;">About</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav mr-auto" style="float: right;">
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'post-create' %}" style="color: greenyellow;">Recycle my item</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}" style="color: greenyellow;">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}" style="color: greenyellow;">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}" style="color: greenyellow;">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}" style="color: greenyellow;">Register</a>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+      </nav>
+      <marquee behavior="alternate" style="color: red;" direction="left">Please recyle your electronics waste and save mother earth</marquee>
+ </header>   
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     
+    <!-- Link Bootstrap JS and JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <footer style="position:relative;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: transparent">
+      <p style="color: greenyellow;">Author: Dominic Percy</p>
+    </footer>
+</body>
+</html>

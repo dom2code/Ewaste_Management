@@ -1,17 +1,28 @@
 {% extends "donation/base.html" %}
 {% block content %}
-    <h1 class="mb-3" style="color: yellowgreen;">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    <h1 class="mb-3" style="color: yellowgreen;">Items provided by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
     {% for post in posts %}
-        <article class="media content-section">
+        <article style="background-image:url(https://wallpaperaccess.com/full/496120.jpg)" class="media content-section">
           <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}<span style="position:relative; left:80px; top:1px;" class="label label-info">{{post.category}}</span></small>
             </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <h2><a style="color:greenyellow" class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+            <p style="color:greenyellow" class="article-content">{{ post.content }}</p>
             <img src="{{ post.image.url }}" class="img-responsive" alt="{{post.title}}" width="307" height="240">
+            <button class="btn btn-success" id="123" type="email" onclick="sendEmail(event)">Contact User: {{post.author.email}}</button>
+            
+            <script>
+              function sendEmail(objectBody) 
+              {
+                obj=(objectBody.target.innerHTML);
+                email=obj.split(" ")
+                  location.href = "mailto:"+email[2];
+                  
+              }
+              </script>
             <span style="background-color: red; left:80px; top:1px;" class="label label-info">Location : {{post.location}}</span>
           </div>
         </article>

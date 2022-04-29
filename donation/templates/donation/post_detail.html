@@ -1,6 +1,6 @@
 {% extends "donation/base.html" %}
 {% block content %}
-  <article class="media content-section">
+  <article style="background-image:url(https://wallpaperaccess.com/full/496120.jpg)" class="media content-section">
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}"> 
     <div class="media-body">
       <div class="article-metadata">
@@ -13,9 +13,20 @@
           </div>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ object.title }}</h2>
-      <p class="article-content">{{ object.content }}</p>
+      <h2 style="color:greenyellow" class="article-title">{{ object.title }}</h2>
+      <p style="color:greenyellow" class="article-content">{{ object.content }}</p>
       <img src="{{ post.image.url }}" class="img-responsive" alt="{{post.title}}" width="307" height="240">
+      <button class="btn btn-success" id="123" type="email" onclick="sendEmail(event)">Contact User: {{post.author.email}}</button>
+            
+      <script>
+        function sendEmail(objectBody) 
+        {
+          obj=(objectBody.target.innerHTML);
+          email=obj.split(" ")
+            location.href = "mailto:"+email[2];
+            
+        }
+        </script>
       <span style="background-color: red; left:80px; top:1px;" class="label label-info">Location : {{post.location}}</span>
     </div>
   </article>
